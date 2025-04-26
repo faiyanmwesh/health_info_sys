@@ -1,0 +1,107 @@
+<ng-template #loadingTpl>
+  <div class="d-flex justify-content-center align-items-center py-5">
+    <div class="spinner-border text-primary" role="status"></div>
+  </div>
+</ng-template>
+
+<ng-container *ngIf="!loading; else loadingTpl">
+  <div class="container py-4">
+    <h2 class="mb-4">Dashboard Home</h2>
+
+    <!-- Metrics cards -->
+    <div class="row g-3 mb-5">
+      <div class="col-md-6">
+        <div class="card text-white bg-primary h-100">
+          <div class="card-body d-flex align-items-center">
+            <i class="fa fa-list fa-3x me-3"></i>
+            <div>
+              <h5 class="card-title">Programs</h5>
+              <h2 class="card-text">{{ totalPrograms }}</h2>
+            </div>
+          </div>
+          <div class="card-footer bg-transparent">
+            <a routerLink="/dashboard/programs" class="text-white">
+              View all <i class="fa fa-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card text-white bg-success h-100">
+          <div class="card-body d-flex align-items-center">
+            <i class="fa fa-users fa-3x me-3"></i>
+            <div>
+              <h5 class="card-title">Clients</h5>
+              <h2 class="card-text">{{ totalClients }}</h2>
+            </div>
+          </div>
+          <div class="card-footer bg-transparent">
+            <a routerLink="/dashboard/clients" class="text-white">
+              View all <i class="fa fa-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="mb-5">
+      <h4 class="mb-3">Quick Actions</h4>
+      <div class="d-flex flex-wrap gap-3">
+        <a routerLink="/dashboard/programs" class="btn btn-outline-primary">
+          <i class="fa fa-list me-2"></i> Manage Programs
+        </a>
+        <a routerLink="/dashboard/programs/add" class="btn btn-primary">
+          <i class="fa fa-plus me-2"></i> New Program
+        </a>
+        <a routerLink="/dashboard/clients" class="btn btn-outline-success">
+          <i class="fa fa-users me-2"></i> Manage Clients
+        </a>
+        <a routerLink="/dashboard/clients/add" class="btn btn-success">
+          <i class="fa fa-user-plus me-2"></i> Register Client
+        </a>
+      </div>
+    </div>
+
+    <!-- Recent Programs & Clients -->
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <h5>Recent Programs</h5>
+        <table class="table table-striped">
+          <thead class="table-light">
+            <tr><th>ID</th><th>Name</th><th>Created</th></tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of recentPrograms">
+              <td>{{ p.id }}</td>
+              <td>{{ p.name }}</td>
+              <td>{{ p.createdAt | date:'shortDate' }}</td>
+            </tr>
+            <tr *ngIf="recentPrograms.length === 0">
+              <td colspan="3" class="text-center text-muted">No programs yet.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-lg-6">
+        <h5>Recent Clients</h5>
+        <table class="table table-striped">
+          <thead class="table-light">
+            <tr><th>ID</th><th>Name</th><th>Joined</th></tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of recentClients">
+              <td>{{ c.id }}</td>
+              <td>{{ c.firstName }} {{ c.lastName }}</td>
+              <td>{{ c.createdAt | date:'shortDate' }}</td>
+            </tr>
+            <tr *ngIf="recentClients.length === 0">
+              <td colspan="3" class="text-center text-muted">No clients yet.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-container>
