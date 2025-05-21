@@ -1,0 +1,89 @@
+/* Layout */
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  transition: width 0.3s ease;
+}
+.sidebar.collapsed {
+  width: 60px;
+}
+.sidebar .nav-link {
+  color: #333;
+}
+.sidebar .nav-link:hover {
+  background-color: #e9ecef;
+  border-radius: 4px;
+}
+
+/* Sidebar toggler - always visible */
+.sidebar-toggler {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1051;
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+}
+
+/* Logo in header */
+.logo {
+  height: 32px;
+  width: 32px;
+}
+
+/* Responsive main wrapper */
+.flex-grow-1 {
+  transition: margin-left 0.3s ease;
+}
+
+/* Responsive tweaks */
+@media (max-width: 767px) {
+  .sidebar {
+    position: absolute;
+    z-index: 1040;
+    height: 100%;
+    left: -240px;
+  }
+  .sidebar.collapsed {
+    left: 0;
+  }
+  .sidebar + .flex-grow-1 {
+    margin-left: 0;
+  }
+  .sidebar-toggler {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+}
+
+/* Ensure footer sticks */
+footer {
+  flex-shrink: 0;
+}
+/* Push sidebar items down below the floating toggler */
+.sidebar {
+  /* keep the existing width + transition */
+  padding-top: 4rem;   /* ← adjust this value up/down as needed */
+}
+
+.sidebar.collapsed {
+  padding-top: 4rem;   /* maintain same padding when collapsed */
+}
+
+/* On small screens, when the sidebar is off-canvas, the padding still applies */
+@media (max-width: 767px) {
+  .sidebar {
+    /* other mobile rules… */
+    padding-top: 4rem;
+  }
+}

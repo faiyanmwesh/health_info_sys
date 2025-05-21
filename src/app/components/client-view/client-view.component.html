@@ -1,0 +1,60 @@
+<!-- <div class="container py-4" *ngIf="client">
+    <h3>Client Profile</h3>
+    <dl class="row">
+      <dt class="col-sm-3">Name</dt><dd class="col-sm-9">{{client.firstName}} {{client.lastName}}</dd>
+      <dt class="col-sm-3">Email</dt><dd class="col-sm-9">{{client.email}}</dd>
+      <dt class="col-sm-3">Programs</dt>
+      <dd class="col-sm-9">
+        <span *ngIf="!client.enrolledProgramIds.length">None</span>
+        <ul *ngIf="client.enrolledProgramIds.length">
+          <li *ngFor="let pid of client.enrolledProgramIds">
+            {{ getProgramName(pid) }}
+          </li>
+        </ul>
+      </dd>
+      <dt class="col-sm-3">Joined</dt><dd class="col-sm-9">{{client.createdAt|date:'full'}}</dd>
+    </dl>
+    <button class="btn btn-secondary" routerLink="/dashboard/clients"> Back</button>
+     
+  </div>
+   -->
+
+   <!-- Loading Spinner -->
+<ng-template #loadingTpl>
+  <div class="d-flex justify-content-center align-items-center py-5">
+    <div class="spinner-border text-primary" role="status"></div>
+  </div>
+</ng-template>
+
+<!-- Main content -->
+<ng-container *ngIf="!loading; else loadingTpl">
+  <div class="container py-4" *ngIf="client">
+    <h3>Client Profile</h3>
+    <dl class="row">
+      <dt class="col-sm-3">Name</dt>
+      <dd class="col-sm-9">{{ client.firstName }} {{ client.lastName }}</dd>
+
+      <dt class="col-sm-3">Email</dt>
+      <dd class="col-sm-9">{{ client.email }}</dd>
+
+      <dt class="col-sm-3">Programs</dt>
+      <dd class="col-sm-9">
+        <ng-container *ngIf="client.enrolledProgramIds.length; else noProgs">
+          <ul class="mb-0">
+            <li *ngFor="let pid of client.enrolledProgramIds">
+              {{ getProgramName(pid) }}
+            </li>
+          </ul>
+        </ng-container>
+        <ng-template #noProgs><span>None</span></ng-template>
+      </dd>
+
+      <dt class="col-sm-3">Joined</dt>
+      <dd class="col-sm-9">{{ client.createdAt | date:'full' }}</dd>
+    </dl>
+
+    <button class="btn btn-secondary" routerLink="/dashboard/clients">
+      <i class="fa fa-arrow-left me-1"></i> Back
+    </button>
+  </div>
+</ng-container>

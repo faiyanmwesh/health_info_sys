@@ -1,0 +1,82 @@
+<!-- Sidebar Toggler - Always Visible -->
+<button
+  class="sidebar-toggler btn btn-outline-secondary"
+  (click)="toggleSidebar($event)"
+  aria-label="Toggle sidebar"
+>
+  <i class="fa" [ngClass]="sidebarCollapsed ? 'fa-arrow-right' : 'fa-arrow-left'"></i>
+</button>
+
+<div class="d-flex h-100">
+  <!-- Sidebar -->
+  <nav
+    class="sidebar bg-light border-right"
+    [class.collapsed]="sidebarCollapsed"
+  >
+    <div class="sidebar-header d-flex align-items-center justify-content-between p-3">
+      <h5 class="m-0"></h5>
+    </div>
+    <ul class="nav flex-column px-2">
+      <li class="nav-item mb-2">
+        <a routerLink="/dashboard" class="nav-link">
+          <i class="fa fa-home me-2"></i>
+          <span *ngIf="!sidebarCollapsed">Home</span>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a routerLink="/dashboard/programs" class="nav-link">
+            <i class="fa fa-th-list me-2"></i>
+            <span *ngIf="!sidebarCollapsed">Programs</span>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a routerLink="/dashboard/clients" class="nav-link">
+            <i class="fa fa-users me-2"></i>
+            <span *ngIf="!sidebarCollapsed">Clients</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main content wrapper -->
+  <div class="flex-grow-1 d-flex flex-column" >
+    <!-- Top navbar -->
+    <header class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-3">
+      <div class="d-flex align-items-center">
+        <img src="assets/logo.png" alt="Logo" class="logo me-2" />
+        <h4 class="mb-0">Health Information System</h4>
+        <span class="ms-3 text-muted small">| {{ currentUser }}</span>
+      </div>
+      <div class="ms-auto d-flex align-items-center">
+        <span class="me-3 small text-secondary">
+          {{ currentDate | date: 'fullDate' }}
+        </span>
+        <div class="dropdown">
+          <button
+            class="btn btn-outline-secondary dropdown-toggle"
+            id="userMenu"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa fa-user-circle"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><hr class="dropdown-divider"/></li>
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Router outlet / page content -->
+    <main class="flex-fill overflow-auto p-4 bg-light">
+      <router-outlet></router-outlet>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-2 bg-white border-top text-center small">
+      &copy; {{ currentDate | date:'yyyy' }} Health Information System.
+    </footer>
+  </div>
+</div>

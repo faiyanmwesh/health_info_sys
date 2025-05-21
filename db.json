@@ -1,0 +1,77 @@
+{
+    "programs": [
+      {
+        "id": 1,
+        "name": "HIV Awareness Program",
+        "description": "Community outreach and education on HIV prevention.",
+        "createdAt": "2024-01-15T08:30:00Z"
+      },
+      {
+        "id": 2,
+        "name": "Malaria Control Initiative",
+        "description": "Distribution of mosquito nets and spraying campaigns.",
+        "createdAt": "2024-02-20T09:45:00Z"
+      },
+      {
+        "id": 3,
+        "name": "TB Screening Drive",
+        "description": "Free chest X-rays and sputum tests at local clinics.",
+        "createdAt": "2024-03-05T11:00:00Z"
+      },
+      {
+        "id": 4,
+        "name": "Maternal Health Support",
+        "description": "Pre-natal care and nutrition counseling for expectant mothers.",
+        "createdAt": "2024-03-25T14:20:00Z"
+      },
+      {
+        "id": 5,
+        "name": "Child Immunization Week",
+        "description": "Mass immunization sessions for under-5 children.",
+        "createdAt": "2024-04-10T10:15:00Z"
+      }
+    ],
+    "clients": [
+      {
+        "id": 1,
+        "firstName": "Alice",
+        "lastName": "Mburu",
+        "email": "alice.mburu@example.com",
+        "enrolledProgramIds": [1, 3],
+        "createdAt": "2024-02-01T12:00:00Z"
+      },
+      {
+        "id": 2,
+        "firstName": "Brian",
+        "lastName": "Otieno",
+        "email": "brian.otieno@example.com",
+        "enrolledProgramIds": [2],
+        "createdAt": "2024-02-18T16:30:00Z"
+      },
+      {
+        "id": 3,
+        "firstName": "Catherine",
+        "lastName": "Njeri",
+        "email": "catherine.njeri@example.com",
+        "enrolledProgramIds": [4,5],
+        "createdAt": "2024-03-12T09:10:00Z"
+      },
+      {
+        "id": 4,
+        "firstName": "David",
+        "lastName": "Kiptoo",
+        "email": "david.kiptoo@example.com",
+        "enrolledProgramIds": [],
+        "createdAt": "2024-03-28T14:45:00Z"
+      },
+      {
+        "id": 5,
+        "firstName": "Eva",
+        "lastName": "Wanjiku",
+        "email": "eva.wanjiku@example.com",
+        "enrolledProgramIds": [1,2,5],
+        "createdAt": "2024-04-15T11:25:00Z"
+      }
+    ]
+  }
+  

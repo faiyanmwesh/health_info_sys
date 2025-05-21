@@ -1,0 +1,20 @@
+/* Container padding */
+.container {
+  padding-top: 1rem;
+}
+
+/* Modals above everything */
+.modal-backdrop { z-index: 1040; }
+.modal { z-index: 1050; }
+
+/* Scroll inside modal-body */
+.modal-body {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* Spinner size */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}

@@ -1,0 +1,96 @@
+<!-- <div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3>Clients</h3>
+      <a class="btn btn-primary" routerLink="/dashboard/clients/add">
+        <i class="fa fa-plus"></i> Register
+      </a>
+    </div>
+    <table class="table table-striped table-responsive">
+      <thead class="table-light">
+        <tr>
+          <th>#</th><th>Name</th><th>Email</th><th>Programs</th><th>Joined</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of clients">
+          <td>{{c.id}}</td>
+          <td>{{c.firstName}} {{c.lastName}}</td>
+          <td>{{c.email}}</td>
+          <td>{{c.enrolledProgramIds.length}}</td>
+          <td>{{c.createdAt|date:'short'}}</td>
+          <td>
+            <a routerLink="/dashboard/clients/view/{{c.id}}" class="btn btn-sm btn-outline-info me-1">
+              <i class="fa fa-eye"></i>
+            </a>
+            <a routerLink="/dashboard/clients/edit/{{c.id}}" class="btn btn-sm btn-outline-secondary me-1">
+              <i class="fa fa-pencil"></i>
+            </a>
+            <button class="btn btn-sm btn-outline-danger" (click)="svc.delete(c.id); ngOnInit()">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="!clients.length">
+          <td colspan="6" class="text-center text-muted">No clients.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+   -->
+   <div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3>Clients</h3>
+      <a class="btn btn-primary" [routerLink]="['add']">
+        <i class="fa fa-plus"></i> Register
+      </a>
+    </div>
+  
+    <table class="table table-striped table-responsive">
+      <thead class="table-light">
+        <tr>
+          <th>#</th><th>Name</th><th>Email</th><th>Programs</th><th>Joined</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="clients$ | async as clients; else loading">
+          <tr *ngFor="let c of clients">
+            <td>{{ c.id }}</td>
+            <td>{{ c.firstName }} {{ c.lastName }}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.enrolledProgramIds.length }}</td>
+            <td>{{ c.createdAt | date:'short' }}</td>
+            <td>
+              <!-- Relative links -->
+              <a
+                class="btn btn-sm btn-outline-info me-1"
+                [routerLink]="['view', c.id]"
+                title="View"
+              ><i class="fa fa-eye"></i></a>
+  
+              <a
+                class="btn btn-sm btn-outline-secondary me-1"
+                [routerLink]="['edit', c.id]"
+                title="Edit"
+              ><i class="fa fa-pencil"></i></a>
+  
+              <button
+                class="btn btn-sm btn-outline-danger"
+                (click)="delete(c.id)"
+                title="Delete"
+              ><i class="fa fa-trash"></i></button>
+            </td>
+          </tr>
+          <tr *ngIf="clients.length === 0">
+            <td colspan="6" class="text-center text-muted">No clients.</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  
+    <ng-template #loading>
+      <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status"></div>
+      </div>
+    </ng-template>
+  </div>
+  

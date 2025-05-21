@@ -1,0 +1,40 @@
+<div class="container py-4">
+    <h3>{{mode==='add'?'Register Client':'Edit Client'}}</h3>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+      <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input name="firstName" class="form-control" required minlength="2"
+               [(ngModel)]="formModel.firstName"/>
+        <div *ngIf="f.submitted && f.controls['firstName']?.invalid" class="text-danger small">
+          First name (min 2 chars) required.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input name="lastName" class="form-control" required minlength="2"
+               [(ngModel)]="formModel.lastName"/>
+        <div *ngIf="f.submitted && f.controls['lastName']?.invalid" class="text-danger small">
+          Last name (min 2 chars) required.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input name="email" type="email" class="form-control" required
+               [(ngModel)]="formModel.email"/>
+        <div *ngIf="f.submitted && f.controls['email']?.invalid" class="text-danger small">
+          Valid email required.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Enroll Programs</label>
+        <select name="enrolledProgramIds" multiple class="form-select"
+                [(ngModel)]="formModel.enrolledProgramIds">
+          <option *ngFor="let p of programs" [value]="p.id">{{p.name}}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary me-2">{{mode==='add'?'Register':'Update'}}</button>
+    <button type="button" class="btn btn-secondary" routerLink="/dashboard/clients"> Cancel</button>
+    
+    </form>
+  </div>
+  
